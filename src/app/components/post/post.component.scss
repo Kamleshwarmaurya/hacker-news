@@ -1,4 +1,5 @@
 .m-table {
+  font-size: 12px;
   width: 100%;
   border-collapse: collapse;
 
@@ -25,4 +26,23 @@
       text-align: center;
     }
   }
+
+  &__dark-color {
+    color: #828282;
+  }
+
+  &__light-color {
+    color: #c9c9c9;
+  }
+}
+
+.m-pagination {
+  padding: 18px 18px 18px 75px;
+
+  &__link {
+    font-size: 12px;
+    color: #ff6601;
+    cursor: pointer;
+  }
+
 }
