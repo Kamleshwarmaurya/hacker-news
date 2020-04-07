@@ -1,22 +1,35 @@
+@import '../../../assets/styles/base/mixin';
+
 .m-table {
-  font-size: 12px;
+  @include rem(font-size, 12px);
   width: 100%;
   border-collapse: collapse;
 
   &__row {
-    background-color: #f6f6f0;
+    background-color: $c-bg-color-primary;
 
     &:nth-child(2n) {
-      background-color: #e6e6e0;
+      background-color: $c-bg-color-secondary;
     }
   }
 
   &__link {
     display: inline-block;
+
+    &--general {
+      text-decoration: none;
+      color: $c-black;
+    }
   }
 
   &__data {
-    padding: 8px 5px;
+    @include rem(padding, 8px 10px);
+    @include rem(min-width, 50px);
+
+    @include media-medium {
+      @include rem(padding, 8px 5px);
+      min-width: auto;
+    }
 
     &--align-right {
       text-align: right;
@@ -28,20 +41,20 @@
   }
 
   &__dark-color {
-    color: #828282;
+    color: $dark-color-font;
   }
 
   &__light-color {
-    color: #c9c9c9;
+    color: $light-color-font;
   }
 }
 
 .m-pagination {
-  padding: 18px 18px 18px 75px;
+  @include rem(padding, 18px 18px 18px 75px);
 
   &__link {
-    font-size: 12px;
-    color: #ff6601;
+    @include rem(font-size, 12px);
+    color: $c-primary-color;
     cursor: pointer;
   }
 
