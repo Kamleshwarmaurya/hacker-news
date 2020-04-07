@@ -23,7 +23,7 @@ import { DateAgoPipe } from './pipes/dateago.pipe';
     DateAgoPipe
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
