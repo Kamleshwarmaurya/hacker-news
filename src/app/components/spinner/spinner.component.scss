@@ -1,0 +1,12 @@
+@import '../../../assets/styles/base/mixin';
+
+.spinner {
+  @include rem(width, 50px);
+  display: block;
+  margin: 20px auto;
+
+  &__img {
+    display: block;
+    max-width: 100%;
+  }
+}

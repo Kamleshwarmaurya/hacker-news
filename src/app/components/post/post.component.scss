@@ -1,0 +1,51 @@
+@import '../../../assets/styles/base/mixin';
+
+.m-table {
+  @include rem(font-size, 12px);
+  width: 100%;
+  border-collapse: collapse;
+
+  &__row {
+    background-color: $c-bg-color-primary;
+
+    &:nth-child(2n) {
+      background-color: $c-bg-color-secondary;
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    cursor: pointer;
+
+    &--general {
+      text-decoration: none;
+      color: $c-black;
+    }
+  }
+
+  &__data {
+    @include rem(padding, 8px 10px);
+    @include rem(min-width, 50px);
+
+    @include media-medium {
+      @include rem(padding, 8px 5px);
+      min-width: auto;
+    }
+
+    &--align-right {
+      text-align: right;
+    }
+
+    &--align-center {
+      text-align: center;
+    }
+  }
+
+  &__dark-color {
+    color: $dark-color-font;
+  }
+
+  &__light-color {
+    color: $light-color-font;
+  }
+}

@@ -1,0 +1,101 @@
+@import './color';
+
+
+// VARIABLES
+$small: 576px;
+$medium: 768px;
+$large: 992px;
+$x-large: 1200;
+
+
+@mixin clearfix {
+  &:after {
+    content: '';
+    clear: both;
+    display: block;
+  }
+}
+
+@function parseInt($n) {
+  @return $n / ($n * 0 + 1);
+}
+
+
+@mixin rem($property, $values) {
+  $px: ();
+  /* 3 */
+  $rem: ();
+  /* 3 */
+
+  @each $value in $values {
+    /* 4 */
+
+    @if $value==0 or $value==auto or $value== !important {
+      //sass-lint:disable-line no-important
+      /* 5 */
+      $px: append($px, $value);
+      $rem: append($rem, $value);
+    }
+
+    @else {
+      $unit: unit($value);
+      /* 6 */
+      $val: parseInt($value);
+      /* 6 */
+
+      @if $unit=='px' {
+        /* 7 */
+        $px: append($px, $value);
+        $rem: append($rem, ($val / 10 + rem));
+      }
+
+      @if $unit=='rem' {
+        /* 7 */
+        $px: append($px, ($val * 10 + px));
+        $rem: append($rem, $value);
+      }
+    }
+  }
+
+  @if $px==$rem {
+    /* 8 */
+    #{$property}: $px;
+    /* 9 */
+  }
+
+  @else {
+    #{$property}: $px;
+    /* 9 */
+    #{$property}: $rem; //sass-lint:disable-line  no-duplicate-properties
+    /* 9 */
+  }
+}
+
+
+/** max-width: 320px */
+@mixin media-small {
+  @media (max-width: $small) {
+    @content;
+  }
+}
+
+/** min-width: 768px */
+@mixin media-medium {
+  @media (min-width: $medium) {
+    @content;
+  }
+}
+
+/** min-width: 1024 */
+@mixin media-large {
+  @media (min-width: $large) {
+    @content;
+  }
+}
+
+/** min-width: 1320 */
+@mixin media-x-large {
+  @media (min-width: $xlarge) {
+    @content;
+  }
+}

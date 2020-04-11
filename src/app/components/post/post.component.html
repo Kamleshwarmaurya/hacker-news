@@ -1,0 +1,40 @@
+<app-spinner *ngIf="postService?.isSpinnerVisible; else showRecords"></app-spinner>
+<ng-template #showRecords>
+    <table class="m-table">
+        <tbody class="m-table__body">
+            <ng-container *ngFor="let post of posts">
+                <tr class="m-table__row" *ngIf="postService?.isPostVisible(post?.objectID)">
+                    <td class="m-table__data m-table__data--align-right">
+                        {{post?.num_comments}}
+                    </td>
+                    <td class="m-table__data m-table__data--align-right ">
+                        {{postService?.getVotesById(post?.objectID)}}
+                        <a class="m-table__link" (click)="postService.setVote(post?.objectID);">
+                            <i class="arrow-up"></i>
+                        </a>
+                    </td>
+                    <td class="m-table__data">
+                        <span class="m-table__title">
+                            {{post?.title}}</span>
+                        <ng-container *ngIf="!!post?.url">
+                            <span class="m-table__light-color">&nbsp;(&nbsp;</span>
+                            <span class="m-table__dark-color">{{post?.url | shortdomain}}</span>
+                            <span class="m-table__light-color">&nbsp;)&nbsp;</span>
+                        </ng-container>
+
+                        <span class="m-table__light-color">&nbsp;by&nbsp;</span>
+                        <span> {{post?.author}}</span> &nbsp;
+                        <span class="m-table__dark-color">{{post?.created_at}}</span> &nbsp;
+                        <span class="m-table__dark-color">[ &nbsp;</span>
+                        <a class="m-table__link m-table__link--general"
+                            (click)="postService.hideStory(post?.objectID)">hide</a>
+                        <span class="m-table__dark-color">&nbsp;]</span>
+                    </td>
+                </tr>
+            </ng-container>
+
+        </tbody>
+    </table>
+    <app-pagination></app-pagination>
+
+</ng-template>
