@@ -25,7 +25,10 @@ export class PostService {
    * @memberof PostService
    */
   private setItemInSessionStorage(key: string, value: string) {
-    window.sessionStorage.setItem(key, value);
+    if (typeof window !== "undefined") {
+      window.sessionStorage.setItem(key, value);
+    }
+
   }
 
   /**
@@ -36,7 +39,10 @@ export class PostService {
    * @memberof PostService
    */
   private getItemFromSessionStorage(key: string) {
-    return window.sessionStorage.getItem(key);
+    if (typeof window !== "undefined") {
+      return window.sessionStorage.getItem(key);
+    }
+
   }
 
 
@@ -62,7 +68,9 @@ export class PostService {
    */
   public getVotesById(objectId: any): string {
     const votesAndHide = this.getItemFromSessionStorage(objectId);
-    return votesAndHide.split('__')[0];
+    if (votesAndHide) {
+      return votesAndHide.split('__')[0];
+    }
   }
 
 
@@ -74,8 +82,11 @@ export class PostService {
    */
   public setVote(objectId: string): void {
     const votesAndHide = this.getItemFromSessionStorage(objectId);
-    const options = votesAndHide.split('__');
-    this.setItemInSessionStorage(objectId, `${parseInt(options[0]) + 1}__${options[1]}`);
+    if (votesAndHide) {
+      const options = votesAndHide.split('__');
+      this.setItemInSessionStorage(objectId, `${parseInt(options[0]) + 1}__${options[1]}`);
+    }
+
   }
 
 
@@ -86,8 +97,10 @@ export class PostService {
    */
   public hideStory(objectId: string): void {
     const votesAndHide = this.getItemFromSessionStorage(objectId);
-    const options = votesAndHide.split('__');
-    this.setItemInSessionStorage(objectId, `${parseInt(options[0])}__0`);
+    if (votesAndHide) {
+      const options = votesAndHide.split('__');
+      this.setItemInSessionStorage(objectId, `${parseInt(options[0])}__0`);
+    }
   }
 
 
@@ -99,7 +112,9 @@ export class PostService {
    */
   public isPostVisible(objectId: string): number {
     const votesAndHide = this.getItemFromSessionStorage(objectId);
-    return parseInt(votesAndHide.split('__')[1]);
+    if (votesAndHide) {
+      return parseInt(votesAndHide.split('__')[1]);
+    }
   }
 
 
