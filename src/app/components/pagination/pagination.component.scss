@@ -1,0 +1,13 @@
+@import '../../../assets/styles/base/mixin';
+
+.m-pagination {
+  @include rem(padding, 18px 18px 18px 75px);
+
+  &__link {
+    @include rem(font-size, 12px);
+    color: $c-primary-color;
+    cursor: pointer;
+  }
+}
+
+

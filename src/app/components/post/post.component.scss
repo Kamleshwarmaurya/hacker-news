@@ -15,6 +15,7 @@
 
   &__link {
     display: inline-block;
+    cursor: pointer;
 
     &--general {
       text-decoration: none;
@@ -47,15 +48,4 @@
   &__light-color {
     color: $light-color-font;
   }
-}
-
-.m-pagination {
-  @include rem(padding, 18px 18px 18px 75px);
-
-  &__link {
-    @include rem(font-size, 12px);
-    color: $c-primary-color;
-    cursor: pointer;
-  }
-
 }

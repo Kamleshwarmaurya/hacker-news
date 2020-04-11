@@ -1,32 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { PostService } from 'src/app/services/post.service';
+import { IPosts } from 'src/app/interfaces/posts.interface';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss']
+  styleUrls: ['./post.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PostComponent implements OnInit {
+export class PostComponent implements OnInit, AfterViewInit {
 
-  public posts: any;
-  public index: number = 0;
 
-  constructor(private postService: PostService) { }
+  private unsubscribe: Subject<void> = new Subject<void>();
+  public posts: IPosts[];
+
+  public isSpinnerVisible = true;
+
+  constructor(public postService: PostService, private ref: ChangeDetectorRef) { }
 
   public ngOnInit(): void {
 
     this.postService.getPosts()
       .subscribe((posts) => {
-        this.posts = posts;
+        this.postService.storeInStorageAccount(posts.hits);
       });
   }
 
-  public loadMoreData(): void {
-    this.postService.getPosts(`&page=${this.index}`)
+  public ngAfterViewInit() {
+    this.postService.posts$
+      .pipe(takeUntil(this.unsubscribe))
       .subscribe((posts) => {
         this.posts = posts;
+        this.postService.isSpinnerVisible = false;
+        this.ref.detectChanges();
       });
-    this.index++;
+  }
+
+  public ngOnDestroy(): void {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
 }

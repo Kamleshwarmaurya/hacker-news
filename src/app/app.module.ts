@@ -13,6 +13,9 @@ import { PostComponent } from './components/post/post.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ShortdomainPipe } from './pipes/shortdomain.pipe';
 import { DateAgoPipe } from './pipes/dateago.pipe';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { DateAgoPipe } from './pipes/dateago.pipe';
     HeaderComponent,
     PostComponent,
     ShortdomainPipe,
-    DateAgoPipe
+    DateAgoPipe,
+    SpinnerComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -36,7 +41,8 @@ import { DateAgoPipe } from './pipes/dateago.pipe';
     }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    HttpClientModule
+    HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

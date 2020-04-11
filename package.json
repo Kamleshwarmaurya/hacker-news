@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 3030",
+    "start": "ng serve --port 3333",
     "build": "ng build",
     "test": "ng test --code-coverage --sourceMap=false",
     "lint": "ng lint",
@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "~9.1.0",
     "@angular/platform-server": "~9.1.0",
     "@angular/router": "~9.1.0",
+    "@angular/service-worker": "~9.1.0",
     "@ngrx/effects": "^9.0.0",
     "@ngrx/schematics": "^9.0.0",
     "@ngrx/store": "^9.0.0",

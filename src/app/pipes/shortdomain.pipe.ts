@@ -9,11 +9,13 @@ export class ShortdomainPipe implements PipeTransform {
     if (url) {
       if (url.length > 3) {
         let result;
-        let match;
-        if (match = url.match(/^(?:https?:\/\/)?(?:www\.)?([^:\/\n?=]+)/im)) {
+        let match = url.match(/^(?:https?:\/\/)?(?:www\.)?([^:\/\n?=]+)/im);
+        if (match) {
           result = match[1];
-          if (match = result.match(/^[^.]+\.(.+\..+)$/))
+          match = result.match(/^[^.]+\.(.+\..+)$/);
+          if (match) {
             result = match[1];
+          }
         }
         return result;
       }
