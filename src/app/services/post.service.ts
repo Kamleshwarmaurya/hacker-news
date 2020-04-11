@@ -11,6 +11,7 @@ export class PostService {
   public postsSubject = new Subject<IPosts[]>();
   public posts$ = this.postsSubject.asObservable();
   public isSpinnerVisible = true;
+  public index = 0;
 
   constructor(private http: HttpClient) { }
 

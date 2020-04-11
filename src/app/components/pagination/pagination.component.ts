@@ -9,9 +9,6 @@ import { take } from 'rxjs/operators';
 })
 export class PaginationComponent {
 
-
-  public index = 0;
-
   constructor(private postService: PostService) { }
 
 
@@ -22,12 +19,12 @@ export class PaginationComponent {
    */
   public loadMoreData(): void {
     this.postService.isSpinnerVisible = true;
-    this.postService.getPosts(`&page=${this.index}`)
+    this.postService.getPosts(`&page=${this.postService.index}`)
       .pipe(take(1))
       .subscribe((posts) => {
         this.postService.storeInStorageAccount(posts.hits);
       });
-    this.index++;
+      this.postService.index ++;
   }
 
 }
