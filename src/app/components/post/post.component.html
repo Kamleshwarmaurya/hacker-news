@@ -24,7 +24,7 @@
 
                         <span class="m-table__light-color">&nbsp;by&nbsp;</span>
                         <span> {{post?.author}}</span> &nbsp;
-                        <span class="m-table__dark-color">{{post?.created_at}}</span> &nbsp;
+                        <span class="m-table__dark-color">{{post?.created_at | dateago}}</span> &nbsp;
                         <span class="m-table__dark-color">[ &nbsp;</span>
                         <a class="m-table__link m-table__link--general"
                             (click)="postService.hideStory(post?.objectID)">hide</a>

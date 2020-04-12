@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://hn.algolia.com/'
+  apiUrl: 'https://hn.algolia.com/'
 };
 
 /*

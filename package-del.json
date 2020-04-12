@@ -2,16 +2,11 @@
   "name": "hacker-news",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve --port 3333",
-    "build": "ng build",
-    "test": "ng test --code-coverage --sourceMap=false",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "dev:ssr": "ng run hacker-news:serve-ssr",
-    "serve:ssr": "node dist/hacker-news/server/main.js",
-    "build:ssr": "ng build --prod && ng run hacker-news:server:production",
-    "prerender": "ng run hacker-news:prerender"
+    "start" : "node dist/hacker-news/server/main.js"
+  },
+  "engines": {
+    "node": "v12.16.1",
+    "npm": "6.14.4"
   },
   "private": true,
   "dependencies": {
